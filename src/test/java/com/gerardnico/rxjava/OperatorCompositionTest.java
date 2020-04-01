@@ -1,16 +1,9 @@
 package com.gerardnico.rxjava;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import org.junit.Test;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
-import java.util.HashMap;
-import java.util.Map;
+import io.reactivex.rxjava3.core.Observable;
+import org.junit.Test;
+
 
 public class OperatorCompositionTest {
 

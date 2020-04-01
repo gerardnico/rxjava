@@ -1,10 +1,15 @@
 package com.gerardnico.rxjava;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 import org.junit.Test;
 
+/**
+ * https://github.com/ReactiveX/RxJava/wiki/Error-Handling
+ */
 public class ErrorHandlingTest {
 
     /**
@@ -20,8 +25,9 @@ public class ErrorHandlingTest {
                     }
                 })
                 .subscribe(new Observer<Integer>() {
+
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onSubscribe(@NonNull Disposable d) {
                         System.out.println("OnSubscribe Observable.");
                     }
 

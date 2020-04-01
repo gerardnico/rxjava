@@ -1,10 +1,11 @@
 package com.gerardnico.rxjava;
 
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 import org.junit.Test;
 
 public class HelloWorldTest {
@@ -24,8 +25,9 @@ public class HelloWorldTest {
         Observable
                 .just(1, 2, 3)
                 .subscribe(new Observer<Integer>() {
+
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    public void onSubscribe(@NonNull Disposable d) {
                         System.out.println("OnSubscribe Observable.");
                     }
 

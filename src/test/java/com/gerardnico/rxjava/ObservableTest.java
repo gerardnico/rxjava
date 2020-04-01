@@ -3,8 +3,9 @@
  */
 package com.gerardnico.rxjava;
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import org.junit.Test;
 
 import java.util.Arrays;
