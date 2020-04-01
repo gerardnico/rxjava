@@ -82,21 +82,21 @@ public class ObservableApp {
      * @return
      */
     public static Observable<String> fetchWikipediaArticleAsynchronously(String... wikipediaArticlesNames) {
-        return Observable.create(subscriber -> new Thread(() -> {
+        return Observable.create(observableEmitter -> new Thread(() -> {
             try {
                 for (String articleName : wikipediaArticlesNames) {
                     System.out.println("Fetching Article " + articleName);
-                    if (subscriber.isDisposed()) {
+                    if (observableEmitter.isDisposed()) {
                         return;
                     }
-                    subscriber.onNext(getText("https://en.wikipedia.org/wiki/" + articleName));
+                    observableEmitter.onNext(getText("https://en.wikipedia.org/wiki/" + articleName));
                 }
-                if (!subscriber.isDisposed()) {
-                    subscriber.onComplete();
+                if (!observableEmitter.isDisposed()) {
+                    observableEmitter.onComplete();
                 }
             } catch (Throwable t) {
-                if (false == subscriber.isDisposed()) {
-                    subscriber.onError(t);
+                if (false == observableEmitter.isDisposed()) {
+                    observableEmitter.onError(t);
                 }
             }
         }).start());

@@ -30,5 +30,14 @@ public class OperatorCompositionTest {
                 .subscribe(s->System.out.println("onNext => "+s));
     }
 
-
+    /**
+     * Take Return the next 5 elements
+     */
+    @Test
+    public void takeTest() {
+        Observable
+                .just("The", "Dave", "Brubeck", "Quartet", "Time", "Out")
+                .take(5)
+                .subscribe(System.out::println);
+    }
 }

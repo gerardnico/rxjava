@@ -20,7 +20,7 @@ public class HelloWorldTest {
     }
 
     @Test
-    public void observerOnLifecycle() {
+    public void observableSubscribeWithObserver() {
         Observable
                 .just(1, 2, 3)
                 .subscribe(new Observer<Integer>() {
@@ -46,6 +46,12 @@ public class HelloWorldTest {
                 });
     }
 
+    @Test
+    public void observableSubscribeWithConsumer() {
+        Observable
+                .just(1, 2, 3)
+                .subscribe(System.out::println);
+    }
 
 
 }

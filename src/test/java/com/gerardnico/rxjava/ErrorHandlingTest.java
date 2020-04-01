@@ -43,7 +43,7 @@ public class ErrorHandlingTest {
     }
 
     @Test
-    public void errorHandling() throws InterruptedException {
+    public void errorHandlingWithObservableEmitter() throws InterruptedException {
         Observable<String> objectObservable = ObservableApp.fetchWikipediaArticleAsynchronously("NonExistent", "Elephant");
         Disposable disposable = objectObservable.subscribe(
                 System.out::println,
@@ -54,5 +54,21 @@ public class ErrorHandlingTest {
             System.out.println("Not disposed");
         }
     }
+
+    @Test
+    public void onErrorArgInSubscribeTest() {
+        Observable
+                .just(1, 2, 3)
+                .subscribe(i->{
+                    if (i==2){
+                        throw new RuntimeException("Not 2 please");
+                    } else {
+                        System.out.println(i);
+                    }
+                },throwable -> {
+                    System.out.println("Error: "+throwable);
+                });
+    }
+
 
 }
