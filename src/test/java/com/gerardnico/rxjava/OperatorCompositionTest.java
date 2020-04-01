@@ -1,8 +1,18 @@
 package com.gerardnico.rxjava;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 import org.junit.Test;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
-public class CompositionTest {
+import java.util.HashMap;
+import java.util.Map;
+
+public class OperatorCompositionTest {
 
     /**
      * Transforming Observables with Operators
@@ -19,4 +29,6 @@ public class CompositionTest {
                 .map(s->s+"_x_form")
                 .subscribe(s->System.out.println("onNext => "+s));
     }
+
+
 }

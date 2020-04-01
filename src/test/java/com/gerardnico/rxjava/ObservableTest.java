@@ -63,16 +63,5 @@ public class ObservableTest {
         }
     }
 
-    @Test
-    public void errorHandling() throws InterruptedException {
-        Observable<String> objectObservable = ObservableApp.fetchWikipediaArticleAsynchronously("NonExistent", "Elephant");
-        Disposable disposable = objectObservable.subscribe(
-                System.out::println,
-                System.err::println);
-        // Needed to wait. Otherwise the JVM may exist before the print of the 50 elements
-        while (!disposable.isDisposed()){
-            Thread.sleep(2000);
-            System.out.println("Not disposed");
-        }
-    }
+
 }
