@@ -16,16 +16,16 @@ public class ObservableApp {
 
     /**
      * Create an Observable from scratch by using the Create operator.
-     *   * Doc: http://reactivex.io/documentation/operators/create.html
-     *   * Example: https://github.com/ReactiveX/RxJava/wiki/How-To-Use-RxJava#creating-an-observable-via-the-create-method
+     * * Doc: http://reactivex.io/documentation/operators/create.html
+     * * Example: https://github.com/ReactiveX/RxJava/wiki/How-To-Use-RxJava#creating-an-observable-via-the-create-method
      * This example shows a custom Observable that blocks
      * when subscribed to (does not spawn an extra thread).
      */
     public static Observable<Object> customObservableBlocking() {
         return Observable.create(aSubscriber -> {
-            IntStream.range(0,50).forEach(i -> {
+            IntStream.range(0, 50).forEach(i -> {
                 if (!aSubscriber.isDisposed()) {
-                    aSubscriber.onNext("value_"+i);
+                    aSubscriber.onNext("value_" + i);
                 }
             });
 
@@ -35,5 +35,36 @@ public class ObservableApp {
                 System.out.println("OnComplete fired");
             }
         });
+    }
+
+    /**
+     * Create an Observable from scratch by using the Create operator.
+     * <p>
+     * Example: https://github.com/ReactiveX/RxJava/wiki/How-To-Use-RxJava#asynchronous-observable-example
+     * <p>
+     * This example shows a custom Observable that does not block
+     * when subscribed to as it spawns a separate thread.
+     */
+    public static Observable<Object> customObservableNonBlocking() {
+        return Observable.create(aSubscriber -> new Thread(()->{
+            IntStream.range(0, 10000).forEach(i -> {
+                if (!aSubscriber.isDisposed()) {
+                    if (Math.floorMod(i,1000)==0) {
+                        aSubscriber.onNext("value_" + i);
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            });
+
+            // after sending all values we complete the sequence
+            if (!aSubscriber.isDisposed()) {
+                aSubscriber.onComplete();
+                System.out.println("OnComplete fired");
+            }
+        }).start());
     }
 }

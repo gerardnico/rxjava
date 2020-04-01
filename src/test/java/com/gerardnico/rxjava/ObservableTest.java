@@ -4,6 +4,7 @@
 package com.gerardnico.rxjava;
 
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -37,7 +38,17 @@ public class ObservableTest {
     }
 
     @Test
-    public void observableCreate() {
+    public void observableCreateBlocking() {
         ObservableApp.customObservableBlocking().subscribe(s-> System.out.println(s));
+    }
+    @Test
+    public void observableCreateNonBlocking() throws InterruptedException {
+        Observable<Object> objectObservable = ObservableApp.customObservableNonBlocking();
+        Disposable disposable = objectObservable.subscribe(s -> System.out.println(s));
+        // Needed to wait. Otherwise the JVM may exist before the print of the 50 elements
+        while (!disposable.isDisposed()){
+            Thread.sleep(200);
+            System.out.println("No yet disposed");
+        }
     }
 }
