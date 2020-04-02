@@ -64,6 +64,7 @@ public class ObservableApp {
                             }
                         }
                     } else {
+                        System.out.println("Observable was disposed");
                         throw new RuntimeException("Disposed");
                     }
                 });
@@ -73,7 +74,7 @@ public class ObservableApp {
                 System.out.println("OnComplete fired");
 
             } catch (Exception e) {
-                System.out.println("Observable was disposed");
+                System.out.println("Error received: "+e.getMessage());
             }
 
         }).start());

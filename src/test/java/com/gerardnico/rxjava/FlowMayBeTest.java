@@ -8,7 +8,10 @@ import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class OperatorMayBeTest {
+/**
+ * a flow with no items, exactly one item or an error.
+ */
+public class FlowMayBeTest {
 
     @Test
     public void mayBeTest() throws InterruptedException {
