@@ -51,24 +51,31 @@ public class ObservableApp {
      */
     public static Observable<Object> customObservableNonBlocking() {
         return Observable.create(observableEmitter -> new Thread(() -> {
-            IntStream.range(0, 10000).forEach(i -> {
-                if (!observableEmitter.isDisposed()) {
-                    if (Math.floorMod(i, 1000) == 0) {
-                        observableEmitter.onNext("value_" + i);
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-            });
+            try {
+                IntStream.range(0, 10000).forEach(i -> {
 
-            // after sending all values we complete the sequence
-            if (!observableEmitter.isDisposed()) {
+                    if (!observableEmitter.isDisposed()) {
+                        if (Math.floorMod(i, 1000) == 0) {
+                            observableEmitter.onNext("value_" + i);
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else {
+                        throw new RuntimeException("Disposed");
+                    }
+                });
+
+                // after sending all values we complete the sequence
                 observableEmitter.onComplete();
                 System.out.println("OnComplete fired");
+
+            } catch (Exception e) {
+                System.out.println("Observable was disposed");
             }
+
         }).start());
     }
 

@@ -20,6 +20,9 @@ public class HelloWorldTest {
                 .subscribe(s -> System.out.println("Hello " + s + "!"));
     }
 
+    /**
+     * Showing the callback lifecycle methods
+     */
     @Test
     public void observableSubscribeWithObserver() {
         Observable

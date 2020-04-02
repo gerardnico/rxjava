@@ -9,6 +9,7 @@ import org.junit.Test;
 
 /**
  * https://github.com/ReactiveX/RxJava/wiki/Error-Handling
+ * https://github.com/ReactiveX/RxJava#error-handling
  */
 public class ErrorHandlingTest {
 
