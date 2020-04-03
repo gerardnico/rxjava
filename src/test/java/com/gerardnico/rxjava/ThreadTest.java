@@ -51,6 +51,8 @@ public class ThreadTest {
 
     /**
      * https://github.com/ReactiveX/RxJava#simple-background-computation
+     * Typically, you can move computations or blocking IO to some other thread via subscribeOn.
+     * Once the data is ready, you can make sure they get processed on the foreground or GUI thread via observeOn.
      */
     @Test
     public void simpleBackgroundComputation() throws InterruptedException {

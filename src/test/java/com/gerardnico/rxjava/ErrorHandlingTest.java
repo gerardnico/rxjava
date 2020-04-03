@@ -10,6 +10,15 @@ import org.junit.Test;
 /**
  * https://github.com/ReactiveX/RxJava/wiki/Error-Handling
  * https://github.com/ReactiveX/RxJava#error-handling
+ *
+ *
+ * https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators
+ * There are a variety of operators that you can use to react to or recover from onError notifications from reactive sources, such as Observables. For example, you might:
+ *
+ *   * swallow the error and switch over to a backup Observable to continue the sequence
+ *   * swallow the error and emit a default item
+ *   * swallow the error and immediately try to restart the failed Observable
+ *   * swallow the error and try to restart the failed Observable after some back-off interval
  */
 public class ErrorHandlingTest {
 
